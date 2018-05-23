@@ -1,0 +1,16 @@
+P:
+empty = 100;    //购物篮子临界资源的同步信号量
+inmutex = 1;    //互斥信号量
+outmutex = 1;   //互斥信号量
+wait(empty);
+wait(inmutex);
+登记;
+signal(inmutex);
+进入购物;
+wait(outmutex);
+注销;
+signal(outmutex);
+离开;
+signal(empty);
+
+(2)empty同步信号量的范围: [100-N,100]
