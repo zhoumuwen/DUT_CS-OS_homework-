@@ -1,0 +1,31 @@
+empty = 200;    //缓冲区剩余容量同步信号量
+mutex = 1;    //缓冲区读/写权限互斥信号量
+odd = 0;    //缓冲区中奇数数量同步信号量
+even = 0;   //缓冲区中偶数数量同步信号量
+
+P1:
+wait(empty);
+wait(mutex);
+将一个数据写入缓冲区;
+signal(mutex);
+if(写入的数据为奇数)    
+    signal(odd);
+else
+    signal(even);
+
+P2:
+wait(even);
+wait(mutex);
+取出一个偶数;
+偶数数值加一;
+结果放回缓冲池;
+signal(odd);
+signal(mutex);
+
+P3:
+wait(odd);
+wait(mutex);
+取出一个奇数;
+打印;
+signal(odd);
+signal(empty);
