@@ -1,0 +1,24 @@
+(1)
+#include<stdio.h>
+#include<unistd.h>
+int main(){
+    if(fork() == 0){
+        printf("◊”Ω¯≥ÃµƒpidŒ™£∫%d.\n",getpid());
+        if(fork() == 0) printf("∂˛º∂◊”Ω¯≥ÃµƒpidŒ™£∫%d.\n",getpid());
+    }
+    else printf("∏∏Ω¯≥ÃµƒpidŒ™%d.\n",getpid());
+    return 0;
+}
+
+(2)
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{
+    if(fork() == 0) printf("◊”Ω¯≥ÃµƒpidŒ™ %d.\n",getpid());
+	else{
+        if(fork() == 0) printf("◊”Ω¯≥Ã2µƒpid %d.\n",getpid());
+        else printf("∏∏Ω¯≥ÃµƒpidŒ™ %d.\n\n",getpid());	
+    }    
+	return 0;
+}
